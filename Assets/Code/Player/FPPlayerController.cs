@@ -77,7 +77,6 @@ public class FPPlayerController : MonoBehaviour
     public TextMeshProUGUI m_LifeText;
     public Image m_ShieldBarImage;
     public TextMeshProUGUI m_ShieldText;
-    public GameObject m_AmmoCount;
     public GameObject m_AmmoCountInfo;
 
     void Start()
