@@ -20,7 +20,7 @@ public class ShootingGallery : MonoBehaviour
 
     public float time;
     public GameObject textZone;
-    public GameObject textZonetInfo;
+    public GameObject timeTextZone;
 
     public GameObject rockToHell;
 
@@ -79,7 +79,7 @@ public class ShootingGallery : MonoBehaviour
         }
 
         time -= Time.deltaTime;
-        textZonetInfo.GetComponent<TextMeshProUGUI>().text = "Time " + (int)time;
+        timeTextZone.GetComponent<TextMeshProUGUI>().text = "Time " + (int)time;
 
         
         if (time <= 0)
@@ -104,14 +104,14 @@ public class ShootingGallery : MonoBehaviour
 
     private void SetFailedState()
     {
-        textZonetInfo.GetComponent<TextMeshProUGUI>().text = "Has Perdido";
+        timeTextZone.GetComponent<TextMeshProUGUI>().text = "Has Perdido";
         RestartGame();
     }
 
     public void SetFinishedState()
     {
         states = GaleryStates.Finished;
-        textZonetInfo.GetComponent<TextMeshProUGUI>().text = "Has Ganado!";
+        timeTextZone.GetComponent<TextMeshProUGUI>().text = "Has Ganado!";
         rockToHell.GetComponent<PlayOnceAnimation>().PlayOnce();
         StartCoroutine(playOnceAnimation());
 
@@ -152,7 +152,7 @@ public class ShootingGallery : MonoBehaviour
         points = 0;
         pointsText.GetComponent<TextMeshProUGUI>().text = points.ToString();
 
-        textZonetInfo.GetComponent<TextMeshProUGUI>().text = "Pulsa E para iniciar"; 
+        timeTextZone.GetComponent<TextMeshProUGUI>().text = "Pulsa E para iniciar"; 
 
         SetInnactiveState();
     }
