@@ -18,6 +18,7 @@ public class DroneEnemy : MonoBehaviour
     }
 
     public TState m_State;
+    public TState m_LastState;
 
     NavMeshAgent m_NavMeshAgent;
     public List<Transform> m_PatrolTargets;
@@ -40,7 +41,9 @@ public class DroneEnemy : MonoBehaviour
     public Image m_LifeBarImage;
     public Transform m_LifeBarAnchorPosition;
     public RectTransform m_LifeBarRectTransform;
-    public float m_Life = 1.0f;
+    public float m_Life;
+    public float m_MaxLife = 1.0f;
+    bool m_isAlive;
 
     public BoxCollider m_LeftCollider;
     public BoxCollider m_RightCollider;
@@ -59,7 +62,7 @@ public class DroneEnemy : MonoBehaviour
         m_LifeBarImage.fillAmount = m_Life;
         SetIdleState();
         m_CanShoot = true;
-        m_Life = 1.0f;
+        m_Life = m_MaxLife;
     }
 
     void Update()
@@ -96,20 +99,22 @@ public class DroneEnemy : MonoBehaviour
     }
     void SetIdleState()
     {
+        m_isAlive = true;
         m_State = TState.IDLE;
+        SetPatrolState();
     }
 
     void SetPatrolState()
     {
         m_State = TState.PATROL;
-        m_NavMeshAgent.destination = m_PatrolTargets[m_CurrentPatrolTargetId].position;
+        m_NavMeshAgent.isStopped = false;
+        if (m_isAlive)
+            m_NavMeshAgent.destination = m_PatrolTargets[m_CurrentPatrolTargetId].position;
     }
 
     void SetAlertState()
     {
         m_State = TState.ALERT;
-        m_NavMeshAgent.isStopped = true;
-        m_NavMeshAgent.destination = m_NavMeshAgent.transform.position;
         m_Rotation = 0.0f;
     }
     void SetChaseState()
@@ -120,26 +125,18 @@ public class DroneEnemy : MonoBehaviour
     {
         m_State = TState.ATACK;
     }
-    void SetHitState(float dmg)
+    void SetHitState()
     {
         m_State = TState.HIT;
-        
-        m_Life -= dmg;
-        m_LifeBarImage.fillAmount = m_Life;
-        if (m_Life <= 0)
-        {
-            SetDieState();
-        }
-        SetAlertState();
     }
     void SetDieState()
     {
+        m_isAlive = false;
         m_State = TState.DIE;
     }
 
     void UpdateIdleState()
     {
-        SetPatrolState();
     }
 
     void UpdatePatrolState()
@@ -171,59 +168,57 @@ public class DroneEnemy : MonoBehaviour
 
     void UpdateAlertState()
     {
-        //m_NavMeshAgent.isStopped = true;
-        float Speed = m_RotationSpeed * Time.deltaTime;
-        m_Rotation += Speed;
-        transform.Rotate(0.0f, Speed, 0.0f);
+        transform.eulerAngles += new Vector3(0, m_RotationSpeed * Time.deltaTime, 0);
+        m_Rotation += Time.deltaTime * m_RotationSpeed;
 
         if (SeesPlayer())
         {
-            SetChaseState();
-            if (CanAttack())
+            if (Visible())
             {
                 SetAtackState();
             }
+            else
+            {
+                SetChaseState();
+            }
         }
-        if(DoneSpinning())
+        if(m_Rotation >= 360 && !SeesPlayer())
         {
             SetPatrolState();
-            m_Rotation = 0.0f;
         }
     }
 
     void UpdateChaseState()
     {
+        Vector3 l_PlayerPosition = GameControler.GetGameController().GetPlayer().transform.position;
+        float l_Distance = Vector3.Distance(l_PlayerPosition, transform.position);
         m_NavMeshAgent.destination = GameControler.GetGameController().GetPlayer().transform.position;
-        if (!HearsPlayer())
-        {
-            SetPatrolState();
-        }
-        if (SeesPlayer() && CanAttack())
+
+        if (l_Distance <= m_MaxShootingRange)
         {
             SetAtackState();
+        }
+        else if (l_Distance <= m_SightDistance)
+        {
+            transform.LookAt(l_PlayerPosition);
+            transform.position = Vector3.MoveTowards(transform.position, l_PlayerPosition, m_NavMeshAgent.speed * Time.deltaTime);
+        }
+        else
+        {
+            SetPatrolState();
         }
     }
 
     void UpdateAtackState()
     {
-        if (!SeesPlayer())
+        if (!Visible())
         {
-            SetAlertState();
+            m_CanShoot = true;
+            SetChaseState();
         }
-        if (!CanAttack())
-        {
-            if (SeesPlayer())
-            {
-                SetChaseState();
-            }
-            else
-            {
-                SetAlertState();
-            }
-        }
-
         if (m_CanShoot)
         {
+            m_CanShoot = false;
             Attack();
         }
         
@@ -231,7 +226,16 @@ public class DroneEnemy : MonoBehaviour
 
     void UpdateHitState()
     {
-        
+        if(m_LastState == TState.PATROL || m_LastState == TState.IDLE)
+        {
+            m_LastState = TState.IDLE;
+            SetAlertState();
+        }
+        else
+        {
+            m_State = m_LastState;
+            m_LastState = TState.IDLE;
+        }
     }
 
     void UpdateDieState()
@@ -246,42 +250,27 @@ public class DroneEnemy : MonoBehaviour
 
     public void Hit(float Life)
     {
-        if (m_State == TState.HIT || m_State == TState.DIE) return;
-        SetHitState(Life);
-        Debug.Log("hit life" + Life);
-        
+        m_NavMeshAgent.isStopped = true;
+        m_LastState = m_State;
+        SetHitState();
+        m_Life -= 1.0f;
+        if(m_Life <= 0)
+        {
+            SetDieState();
+        }
     }
-
-    bool CanAttack()
-    {
-        return Vector3.Distance(GameControler.GetGameController().GetPlayer().transform.position, transform.position) <= m_MaxShootingRange;
-    }
-
-    bool DoneSpinning()
-    {
-        return m_Rotation >= 360;
-    }
-
     void Attack()
     {
         GameControler.GetGameController().GetPlayer().Hit(m_ShootDamage);
-        m_CanShoot = false;
         StartCoroutine(ShootCooldown(2.0f));
     }
-
-
     bool HearsPlayer()
     {
         Vector3 l_PlayerPosition = GameControler.GetGameController().GetPlayer().transform.position;
         return Vector3.Distance(l_PlayerPosition, transform.position) <= m_HearRangeDistance;
     }
-
-    
-    
-
     bool SeesPlayer()
     {
-        
         Vector3 l_PlayerPosition = GameControler.GetGameController().GetPlayer().transform.position;
         Vector3 l_DirectionToPlayerXZ = l_PlayerPosition - transform.position;
         l_DirectionToPlayerXZ.y = 0.0f;
