@@ -233,7 +233,7 @@ public class FPPlayerController : MonoBehaviour
             {
                 if (l_RaycastHit.collider.tag == "DroneCollider")
                 {
-                    l_RaycastHit.collider.GetComponent<HitCollider>().Hit(5);
+                    l_RaycastHit.collider.GetComponent<DronHP>().Hit(5);
                 }
                 else if (l_RaycastHit.collider.tag == "GalleryDummy")
                 {
