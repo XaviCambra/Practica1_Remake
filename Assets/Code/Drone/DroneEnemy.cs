@@ -173,7 +173,7 @@ public class DroneEnemy : MonoBehaviour
 
         if (SeesPlayer())
         {
-            if (Visible())
+            if (RangePlayer())
             {
                 SetAtackState();
             }
@@ -211,7 +211,7 @@ public class DroneEnemy : MonoBehaviour
 
     void UpdateAtackState()
     {
-        if (!Visible())
+        if (!RangePlayer())
         {
             m_CanShoot = true;
             SetChaseState();
@@ -267,6 +267,7 @@ public class DroneEnemy : MonoBehaviour
     bool HearsPlayer()
     {
         Vector3 l_PlayerPosition = GameControler.GetGameController().GetPlayer().transform.position;
+        //Debug.Log(Vector3.Distance(l_PlayerPosition, transform.position) <= m_HearRangeDistance);
         return Vector3.Distance(l_PlayerPosition, transform.position) <= m_HearRangeDistance;
     }
     bool SeesPlayer()
@@ -288,14 +289,16 @@ public class DroneEnemy : MonoBehaviour
         Ray l_Ray = new Ray(l_EyesPosition, l_Direction);
 
 
+        Debug.Log(Vector3.Distance(l_PlayerPosition, transform.position) < m_SightDistance);
+        Debug.Log(Vector3.Dot(l_ForwardXZ, l_DirectionToPlayerXZ) > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f));
+        Debug.Log(Physics.Raycast(l_Ray, l_Length, m_SightLayerMask.value));
         return Vector3.Distance(l_PlayerPosition, transform.position) < m_SightDistance && Vector3.Dot(l_ForwardXZ, l_DirectionToPlayerXZ) > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f) && 
             Physics.Raycast(l_Ray, l_Length, m_SightLayerMask.value);
-        
     }
 
     void UpdateLifeBarPosition()
     {
-        if(Visible() && m_State != TState.DIE)
+        if(RangePlayer() && m_State != TState.DIE)
         {
             m_LifeUi.SetActive(true);
         }
@@ -306,6 +309,31 @@ public class DroneEnemy : MonoBehaviour
         Vector3 l_Position = GameControler.GetGameController().GetPlayer().m_Camera.WorldToViewportPoint(m_LifeBarAnchorPosition.position);
         m_LifeBarRectTransform.anchoredPosition = new Vector3(l_Position.x * 1920.0f, -(1080.0f - l_Position.y * 1080.0f), 0.0f);
         m_LifeBarRectTransform.gameObject.SetActive(l_Position.z > 0.0f);
+    }
+
+
+    bool RangePlayer()
+    {
+        Vector3 l_playerPosition = GameControler.GetGameController().GetPlayer().transform.position;
+        Vector3 l_DirectionToPlayerXZ = l_playerPosition - transform.position;
+        l_DirectionToPlayerXZ.y = 0.0f;
+        l_DirectionToPlayerXZ.Normalize();
+        Vector3 l_ForwardXZ = transform.forward;
+        l_ForwardXZ.y = 0.0f;
+        l_ForwardXZ.Normalize();
+
+        Vector3 l_EyesPosition = transform.position + Vector3.up * m_EyesHeight;
+        Vector3 l_PlayerEyesPosition = l_playerPosition + Vector3.up * m_EyesPlayerHeight;
+        Vector3 l_Direction = l_PlayerEyesPosition - l_EyesPosition;
+
+        float l_Lenght = l_Direction.magnitude;
+        l_Direction /= l_Lenght;
+
+
+        Ray l_Ray = new Ray(l_EyesPosition, l_Direction);
+
+        return Vector3.Distance(l_playerPosition, transform.position) <= m_MaxShootingRange && Vector3.Dot(l_ForwardXZ, l_DirectionToPlayerXZ)
+            > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f) && !Physics.Raycast(l_Ray, l_Lenght, m_SightLayerMask.value);
     }
 
     bool Visible()
