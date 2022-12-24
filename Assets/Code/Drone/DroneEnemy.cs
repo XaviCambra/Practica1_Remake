@@ -267,7 +267,6 @@ public class DroneEnemy : MonoBehaviour
     bool HearsPlayer()
     {
         Vector3 l_PlayerPosition = GameControler.GetGameController().GetPlayer().transform.position;
-        //Debug.Log(Vector3.Distance(l_PlayerPosition, transform.position) <= m_HearRangeDistance);
         return Vector3.Distance(l_PlayerPosition, transform.position) <= m_HearRangeDistance;
     }
     bool SeesPlayer()
@@ -286,14 +285,7 @@ public class DroneEnemy : MonoBehaviour
         float l_Length = l_Direction.magnitude;
         l_Direction /= l_Length;
 
-        Ray l_Ray = new Ray(l_EyesPosition, l_Direction);
-
-
-        Debug.Log(Vector3.Distance(l_PlayerPosition, transform.position) < m_SightDistance);
-        Debug.Log(Vector3.Dot(l_ForwardXZ, l_DirectionToPlayerXZ) > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f));
-        Debug.Log(Physics.Raycast(l_Ray, l_Length, m_SightLayerMask.value));
-        return Vector3.Distance(l_PlayerPosition, transform.position) < m_SightDistance && Vector3.Dot(l_ForwardXZ, l_DirectionToPlayerXZ) > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f) && 
-            Physics.Raycast(l_Ray, l_Length, m_SightLayerMask.value);
+        return Vector3.Distance(l_PlayerPosition, transform.position) < m_SightDistance && Vector3.Dot(l_ForwardXZ, l_DirectionToPlayerXZ) > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f);
     }
 
     void UpdateLifeBarPosition()
