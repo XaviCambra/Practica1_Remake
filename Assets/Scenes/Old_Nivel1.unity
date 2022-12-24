@@ -1388,6 +1388,14 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7437729811628389218, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+      propertyPath: m_Drops.Array.data[1]
+      value: 
+      objectReference: {fileID: 5856692952738555866, guid: 0602e5d850e81bd459474dbf2bad1a0b, type: 3}
+    - target: {fileID: 7437729811628389218, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+      propertyPath: m_Drops.Array.data[2]
+      value: 
+      objectReference: {fileID: 5911400449400544803, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
+    - target: {fileID: 7437729811628389218, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
       propertyPath: m_LifeBarAnchorPosition
       value: 
       objectReference: {fileID: 908362881}
