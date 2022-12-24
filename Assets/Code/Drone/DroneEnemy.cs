@@ -248,12 +248,13 @@ public class DroneEnemy : MonoBehaviour
         Instantiate(m_Drop, transform.position , transform.rotation);
     }
 
-    public void Hit(float Life)
+    public void Hit(float damage)
     {
+        Debug.Log("he entrao)");
         m_NavMeshAgent.isStopped = true;
         m_LastState = m_State;
         SetHitState();
-        m_Life -= 1.0f;
+        m_Life -= damage;
         if(m_Life <= 0)
         {
             SetDieState();

@@ -1160,6 +1160,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
+--- !u!1 &718409891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7437729811858553495, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+  m_PrefabInstance: {fileID: 910021112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &718409894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718409891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e78a06c0ba57241835e9df97c87e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_DroneEnemy: {fileID: 0}
+  m_Damage: 3
 --- !u!1001 &725989602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1347,9 +1367,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7437729810562526676, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+      propertyPath: m_TagString
+      value: DroneCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437729811507257269, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+      propertyPath: m_TagString
+      value: DroneCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 7437729811628389217, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
       propertyPath: m_Name
       value: Dron
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437729811628389218, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+      propertyPath: m_Life
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437729811628389218, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+      propertyPath: m_MaxLife
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7437729811628389218, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
       propertyPath: m_LifeBarAnchorPosition
@@ -1418,6 +1454,10 @@ PrefabInstance:
     - target: {fileID: 7437729811628389219, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437729811858553495, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+      propertyPath: m_TagString
+      value: DroneCollider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
@@ -2384,6 +2424,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1712498612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7437729810562526676, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+  m_PrefabInstance: {fileID: 910021112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1712498615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712498612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e78a06c0ba57241835e9df97c87e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_DroneEnemy: {fileID: 0}
+  m_Damage: 3
 --- !u!114 &1725305097 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5891623819073995473, guid: 5b476ae5075b959409c363d3ed24fd69, type: 3}
@@ -2808,6 +2868,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 27bfdb9a40efac94b969eaf77cea92d9, type: 3}
   m_PrefabInstance: {fileID: 2052628649}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2102149404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7437729811507257269, guid: 234c5a94fc707bc48b17aa35ed5b3562, type: 3}
+  m_PrefabInstance: {fileID: 910021112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2102149407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102149404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e78a06c0ba57241835e9df97c87e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_DroneEnemy: {fileID: 0}
+  m_Damage: 5
 --- !u!1 &2104405072
 GameObject:
   m_ObjectHideFlags: 0

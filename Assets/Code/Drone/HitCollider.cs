@@ -10,6 +10,5 @@ public class HitCollider : MonoBehaviour
 
     public virtual void Hit(float damage)
     {
-
     }
 }
