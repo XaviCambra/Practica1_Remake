@@ -31,8 +31,9 @@ public class DroneEnemy : MonoBehaviour
     float m_EyesHeight = 1.8f;
     float m_EyesPlayerHeight = 1.8f;
     float m_MaxShootingRange = 4.0f;
+    float m_ShootCooldown = 0;
     bool m_CanShoot;
-    float m_ShootDamage = 0.3f;
+    float m_ShootDamage = 10f;
 
     float m_Rotation;
     float m_RotationSpeed;
@@ -192,7 +193,10 @@ public class DroneEnemy : MonoBehaviour
     {
         Vector3 l_PlayerPosition = GameControler.GetGameController().GetPlayer().transform.position;
         float l_Distance = Vector3.Distance(l_PlayerPosition, transform.position);
-        m_NavMeshAgent.destination = GameControler.GetGameController().GetPlayer().transform.position;
+        Vector3 l_Direction = l_PlayerPosition - transform.position;
+        l_Direction.Normalize();
+        l_Direction *= 2;
+        m_NavMeshAgent.destination = GameControler.GetGameController().GetPlayer().transform.position - l_Direction;
 
         if (l_Distance <= m_MaxShootingRange)
         {
@@ -211,15 +215,27 @@ public class DroneEnemy : MonoBehaviour
 
     void UpdateAtackState()
     {
+        Debug.Log(RangePlayer());
+
         if (!RangePlayer())
         {
             m_CanShoot = true;
             SetChaseState();
         }
+
+        if (m_ShootCooldown <= 0)
+        {
+            m_CanShoot = true;
+            m_ShootCooldown = 3;
+        }
+        else
+            m_ShootCooldown -= Time.deltaTime;
+
         if (m_CanShoot)
         {
             m_CanShoot = false;
             Attack();
+            return;
         }
         
     }
@@ -263,7 +279,6 @@ public class DroneEnemy : MonoBehaviour
     void Attack()
     {
         GameControler.GetGameController().GetPlayer().Hit(m_ShootDamage);
-        StartCoroutine(ShootCooldown(2.0f));
     }
     bool HearsPlayer()
     {
@@ -326,7 +341,7 @@ public class DroneEnemy : MonoBehaviour
         Ray l_Ray = new Ray(l_EyesPosition, l_Direction);
 
         return Vector3.Distance(l_playerPosition, transform.position) <= m_MaxShootingRange && Vector3.Dot(l_ForwardXZ, l_DirectionToPlayerXZ)
-            > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f) && !Physics.Raycast(l_Ray, l_Lenght, m_SightLayerMask.value);
+            > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f) &&  !Physics.Raycast(l_Ray, l_Lenght, LayerMask.GetMask());
     }
 
     bool Visible()
@@ -348,11 +363,5 @@ public class DroneEnemy : MonoBehaviour
 
         return Vector3.Distance(transform.position, GameControler.GetGameController().GetPlayer().transform.position) < m_SightDistance && Vector3.Dot(l_ForwardXZ, l_DirectionXZ) > Mathf.Cos(m_VisualConeAngle * Mathf.Deg2Rad / 2.0f) && 
             !Physics.Raycast(l_Ray, l_Length, LayerMask.GetMask());
-    }
-
-    IEnumerator ShootCooldown(float cooldown)
-    {
-        yield return new WaitForSeconds(cooldown);
-        m_CanShoot = true;
     }
 }
