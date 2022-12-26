@@ -1284,10 +1284,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 5891623819138726470, guid: 5b476ae5075b959409c363d3ed24fd69, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8ee0831bb31823a46b544854a4d741ec, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b476ae5075b959409c363d3ed24fd69, type: 3}
 --- !u!1001 &803981322
