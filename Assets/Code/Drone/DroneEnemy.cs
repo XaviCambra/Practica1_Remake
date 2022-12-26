@@ -36,14 +36,14 @@ public class DroneEnemy : MonoBehaviour
     float m_ShootDamage = 10f;
 
     float m_Rotation;
-    float m_RotationSpeed;
+    float m_RotationSpeed = 30;
 
     public GameObject m_LifeUi;
     public Image m_LifeBarImage;
     public Transform m_LifeBarAnchorPosition;
     public RectTransform m_LifeBarRectTransform;
     public float m_Life;
-    public float m_MaxLife = 1.0f;
+    public float m_MaxLife = 10.0f;
     bool m_isAlive;
 
     public BoxCollider m_LeftCollider;
@@ -68,7 +68,6 @@ public class DroneEnemy : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(m_Life);
         switch (m_State)
         {
             case TState.IDLE:
@@ -139,6 +138,7 @@ public class DroneEnemy : MonoBehaviour
 
     void UpdateIdleState()
     {
+        SetPatrolState();
     }
 
     void UpdatePatrolState()
@@ -172,6 +172,8 @@ public class DroneEnemy : MonoBehaviour
     {
         transform.eulerAngles += new Vector3(0, m_RotationSpeed * Time.deltaTime, 0);
         m_Rotation += Time.deltaTime * m_RotationSpeed;
+
+        Debug.Log(m_Rotation);
 
         if (SeesPlayer())
         {
