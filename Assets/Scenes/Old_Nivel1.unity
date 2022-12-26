@@ -3407,6 +3407,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1047959406167962101, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 177.785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047959406167962101, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 40.847
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047959406167962101, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 71.519
+      objectReference: {fileID: 0}
     - target: {fileID: 2307420384427304608, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
       propertyPath: m_Name
       value: ammo
@@ -3476,6 +3488,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: shield
       objectReference: {fileID: 0}
+    - target: {fileID: 7315760986077712230, guid: 0602e5d850e81bd459474dbf2bad1a0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 181.75346
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315760986077712230, guid: 0602e5d850e81bd459474dbf2bad1a0b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 40.445576
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315760986077712230, guid: 0602e5d850e81bd459474dbf2bad1a0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 70.98121
+      objectReference: {fileID: 0}
     - target: {fileID: 8946967821433418432, guid: 0602e5d850e81bd459474dbf2bad1a0b, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3529,6 +3553,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4785679782490895303, guid: 3bb00bea802264e409f00f9339a42e54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5102261597737493322, guid: 3bb00bea802264e409f00f9339a42e54, type: 3}
       propertyPath: m_Name
       value: health

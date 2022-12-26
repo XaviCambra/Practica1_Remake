@@ -344,14 +344,17 @@ public class FPPlayerController : MonoBehaviour
     {
         if (other.tag == "healthItem")
         {
+            Debug.Log("Health recogido");
             other.GetComponent<Item>().Pick(this);
         }
         if (other.tag == "shieldItem")
         {
+            Debug.Log("Shield recogido");
             other.GetComponent<Item>().Pick(this);
         }
         if (other.tag == "ammoItem")
         {
+            Debug.Log("Ammo recogido");
             other.GetComponent<Item>().Pick(this);
         }
         else if(other.tag == "Deadzone")
