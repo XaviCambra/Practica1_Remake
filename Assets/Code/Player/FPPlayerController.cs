@@ -337,7 +337,7 @@ public class FPPlayerController : MonoBehaviour
 
     public void AddAmmo(float ammo)
     {
-        m_Shield = Mathf.Clamp(m_TotalAmmo + ammo, 0.0f, 1.0f);
+        m_TotalAmmo = Mathf.Clamp(m_TotalAmmo + ammo, 0.0f, 1.0f);
     }
 
     public void OnTriggerEnter(Collider other)
