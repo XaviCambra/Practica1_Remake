@@ -327,17 +327,18 @@ public class FPPlayerController : MonoBehaviour
 
     public void AddLife(float Life)
     {
-        m_Life = Mathf.Clamp(m_Life + Life, 0.0f, 1.0f);
+        m_Life = Mathf.Clamp(m_Life + Life, 0.0f, 100.0f);
     }
 
     public void AddShield(float shield)
     {
-        m_Shield = Mathf.Clamp(m_Shield + shield, 0.0f, 1.0f);
+        m_Shield = Mathf.Clamp(m_Shield + shield, 0.0f, 100.0f);
     }
 
     public void AddAmmo(float ammo)
     {
-        m_TotalAmmo = Mathf.Clamp(m_TotalAmmo + ammo, 0.0f, 1.0f);
+        m_TotalAmmo = m_TotalAmmo + ammo;
+        AmmoCounter();
     }
 
     public void OnTriggerEnter(Collider other)
