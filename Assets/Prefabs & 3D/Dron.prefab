@@ -709,7 +709,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship14_2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8612962079389752947, guid: 4402ef4896c61e14099a80c3fa4ad1cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4402ef4896c61e14099a80c3fa4ad1cc, type: 3}
 --- !u!4 &8830563251027755489 stripped
 Transform:
