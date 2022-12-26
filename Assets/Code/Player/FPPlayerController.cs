@@ -91,8 +91,8 @@ public class FPPlayerController : MonoBehaviour
         SetIdleWeaponAnimation();
         m_StartPosition = transform.position;
         m_StartRotation = transform.rotation;
-        m_AmmoInGun = 35.0f;
-        m_TotalAmmo = 40.0f;
+        m_TotalAmmo = 70.0f;
+        Reload();
 
         GameObject l_Decal = m_DecalPrefab.gameObject;
 
@@ -419,6 +419,23 @@ public class FPPlayerController : MonoBehaviour
     void Reload()
     {
         float rest = m_MaxAmmoPerGun - m_AmmoInGun;
+
+        if(m_TotalAmmo > rest)
+        {
+            m_TotalAmmo -= rest;
+            m_AmmoInGun = m_MaxAmmoPerGun;
+        }
+        else
+        {
+            m_AmmoInGun += m_TotalAmmo;
+            m_TotalAmmo = 0;
+        }
+
+        AmmoCounter();
+        return;
+
+
+
 
         if (m_TotalAmmo >= 35.0f)
         {

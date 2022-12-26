@@ -3142,6 +3142,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 549947507}
     - target: {fileID: 2627881771044790208, guid: 425562c1d0ddb9e46bbc7e169cf946b2, type: 3}
+      propertyPath: m_MaxAmmoPerGun
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627881771044790208, guid: 425562c1d0ddb9e46bbc7e169cf946b2, type: 3}
       propertyPath: m_ReloadKeyCode
       value: 114
       objectReference: {fileID: 0}
@@ -3430,6 +3434,10 @@ PrefabInstance:
     - target: {fileID: 5558693967221481556, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
       propertyPath: m_Animations.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864599775316814641, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 359.999
       objectReference: {fileID: 0}
     - target: {fileID: 8973141305496029558, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
       propertyPath: m_RootOrder
