@@ -394,10 +394,14 @@ public class FPPlayerController : MonoBehaviour
             m_Life -= (life - m_Shield);
             m_Shield = 0;
         }
-        m_LifeBarImage.fillAmount = m_Life / 100;
+        m_LifeBarImage.fillAmount = m_Life;
         m_LifeText.text = m_Life.ToString();
-        m_ShieldBarImage.fillAmount = m_Shield / 100;
+        m_ShieldBarImage.fillAmount = m_Shield;
         m_ShieldText.text = m_Shield.ToString();
+        if(m_Life <= 0)
+        {
+            Kill();
+        }
     }
 
     void SetAmmoCounter()
