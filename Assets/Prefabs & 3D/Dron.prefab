@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7437729810562526678}
   - component: {fileID: 7437729810562526679}
+  - component: {fileID: 5661036920046409157}
   m_Layer: 0
   m_Name: collider right
   m_TagString: Untagged
@@ -153,8 +154,23 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2111435, y: 0.1674943, z: 0.40975952}
+  m_Size: {x: 0.3, y: 0.3, z: 0.6}
   m_Center: {x: -0.56508636, y: 0.05434823, z: -0.059165955}
+--- !u!114 &5661036920046409157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437729810562526676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e78a06c0ba57241835e9df97c87e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_DroneEnemy: {fileID: 7437729811628389218}
+  m_Damage: 3
 --- !u!1 &7437729810637641071
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7437729811507257271}
   - component: {fileID: 7437729811507257268}
+  - component: {fileID: 5543483511741173362}
   m_Layer: 0
   m_Name: collider center
   m_TagString: Untagged
@@ -429,8 +446,23 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4156704, y: 0.29037094, z: 0.1811142}
+  m_Size: {x: 0.5, y: 0.4, z: 0.25}
   m_Center: {x: -0.4508276, y: -0.045159817, z: 0.07143402}
+--- !u!114 &5543483511741173362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437729811507257269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e78a06c0ba57241835e9df97c87e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_DroneEnemy: {fileID: 7437729811628389218}
+  m_Damage: 3
 --- !u!1 &7437729811628389217
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7437729811858553489}
   - component: {fileID: 7437729811858553494}
+  - component: {fileID: 7969510679826712817}
   m_Layer: 0
   m_Name: collider left
   m_TagString: Untagged
@@ -565,8 +598,23 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2111435, y: 0.1674943, z: 0.40975952}
+  m_Size: {x: 0.3, y: 0.3, z: 0.6}
   m_Center: {x: -0.56508636, y: 0.05434823, z: -0.059165955}
+--- !u!114 &7969510679826712817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437729811858553495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e78a06c0ba57241835e9df97c87e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_DroneEnemy: {fileID: 7437729811628389218}
+  m_Damage: 3
 --- !u!1 &7437729812204048037
 GameObject:
   m_ObjectHideFlags: 0
