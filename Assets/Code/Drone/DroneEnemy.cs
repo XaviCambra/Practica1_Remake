@@ -226,7 +226,7 @@ public class DroneEnemy : MonoBehaviour
         if (m_ShootCooldown <= 0)
         {
             m_CanShoot = true;
-            m_ShootCooldown = 3;
+            m_ShootCooldown = 1.5f;
         }
         else
             m_ShootCooldown -= Time.deltaTime;

@@ -98,7 +98,7 @@ public class FPPlayerController : MonoBehaviour
 
         m_DecalsPool = new TCObjectPool(20, m_DecalPrefab);
 
-        m_LifeBarImage.fillAmount = m_Life;
+        //m_LifeBarImage.fillAmount = m_Life;
 
         SetAmmoCounter();
     }
@@ -371,7 +371,10 @@ public class FPPlayerController : MonoBehaviour
 
     public void RestartGame()
     {
-        m_Life = 1.0f;
+        m_Life = 100;
+        m_Shield = 100;
+        m_LifeBarImage.fillAmount = m_Life;
+        m_ShieldBarImage.fillAmount = m_Shield;
         m_CharacterController.enabled = false;
         transform.position = m_StartPosition;
         transform.rotation = m_StartRotation;
@@ -381,8 +384,6 @@ public class FPPlayerController : MonoBehaviour
     public void Hit(float life)
     {
         Debug.Log(life * 0.7f);
-
-
 
         if (life * 0.7f <= m_Shield)
         {
@@ -394,10 +395,11 @@ public class FPPlayerController : MonoBehaviour
             m_Life -= (life - m_Shield);
             m_Shield = 0;
         }
-        m_LifeBarImage.fillAmount = m_Life;
+        m_LifeBarImage.fillAmount = m_Life/100;
         m_LifeText.text = m_Life.ToString();
-        m_ShieldBarImage.fillAmount = m_Shield;
+        m_ShieldBarImage.fillAmount = m_Shield/100;
         m_ShieldText.text = m_Shield.ToString();
+
         if(m_Life <= 0)
         {
             Kill();
