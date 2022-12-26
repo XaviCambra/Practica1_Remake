@@ -98,8 +98,6 @@ public class FPPlayerController : MonoBehaviour
 
         m_DecalsPool = new TCObjectPool(20, m_DecalPrefab);
 
-        //m_LifeBarImage.fillAmount = m_Life;
-
         SetAmmoCounter();
     }
 
@@ -328,11 +326,13 @@ public class FPPlayerController : MonoBehaviour
     public void AddLife(float Life)
     {
         m_Life = Mathf.Clamp(m_Life + Life, 0.0f, 100.0f);
+        LifeShieldBarUpdate();
     }
 
     public void AddShield(float shield)
     {
         m_Shield = Mathf.Clamp(m_Shield + shield, 0.0f, 100.0f);
+        LifeShieldBarUpdate();
     }
 
     public void AddAmmo(float ammo)
@@ -396,15 +396,21 @@ public class FPPlayerController : MonoBehaviour
             m_Life -= (life - m_Shield);
             m_Shield = 0;
         }
-        m_LifeBarImage.fillAmount = m_Life/100;
-        m_LifeText.text = m_Life.ToString();
-        m_ShieldBarImage.fillAmount = m_Shield/100;
-        m_ShieldText.text = m_Shield.ToString();
 
-        if(m_Life <= 0)
+        LifeShieldBarUpdate();
+
+        if (m_Life <= 0)
         {
             Kill();
         }
+    }
+
+    void LifeShieldBarUpdate()
+    {
+        m_LifeBarImage.fillAmount = m_Life / 100;
+        m_LifeText.text = m_Life.ToString();
+        m_ShieldBarImage.fillAmount = m_Shield / 100;
+        m_ShieldText.text = m_Shield.ToString();
     }
 
     void SetAmmoCounter()
@@ -436,30 +442,6 @@ public class FPPlayerController : MonoBehaviour
         {
             m_AmmoInGun += m_TotalAmmo;
             m_TotalAmmo = 0;
-        }
-
-        AmmoCounter();
-        return;
-
-
-
-
-        if (m_TotalAmmo >= 35.0f)
-        {
-            m_TotalAmmo -= rest;
-            if (m_TotalAmmo < 0.0f)
-            {
-                m_TotalAmmo = 0.0f;
-            }
-            m_AmmoInGun = m_MaxAmmoPerGun;
-        }
-        else
-        {
-            if(rest > m_TotalAmmo)
-            {
-                m_AmmoInGun += m_TotalAmmo;
-                m_TotalAmmo = 0;
-            }
         }
 
         AmmoCounter();
