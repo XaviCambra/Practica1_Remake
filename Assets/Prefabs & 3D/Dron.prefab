@@ -512,7 +512,7 @@ MonoBehaviour:
     m_Bits: 55
   m_LifeUi: {fileID: 7437729810437956272}
   m_LifeBarImage: {fileID: 7437729812204048039}
-  m_LifeBarAnchorPosition: {fileID: 0}
+  m_LifeBarAnchorPosition: {fileID: 7437729811000383964}
   m_LifeBarRectTransform: {fileID: 7437729811000383964}
   m_Life: 1
   m_MaxLife: 1
@@ -521,8 +521,8 @@ MonoBehaviour:
   m_CenterCollider: {fileID: 7437729811507257268}
   m_Drops:
   - {fileID: 5102261597737493322, guid: 3bb00bea802264e409f00f9339a42e54, type: 3}
-  - {fileID: 5254549827574995580, guid: 0602e5d850e81bd459474dbf2bad1a0b, type: 3}
-  - {fileID: 2307420384427304608, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
+  - {fileID: 5911400449400544803, guid: 8afd0d10835eb604c8747aa44219b3d6, type: 3}
+  - {fileID: 5856692952738555866, guid: 0602e5d850e81bd459474dbf2bad1a0b, type: 3}
 --- !u!1 &7437729811858553495
 GameObject:
   m_ObjectHideFlags: 0

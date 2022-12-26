@@ -68,6 +68,7 @@ public class DroneEnemy : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(m_Life);
         switch (m_State)
         {
             case TState.IDLE:
