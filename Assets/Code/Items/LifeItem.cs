@@ -8,7 +8,7 @@ public class LifeItem : Item
 
     public override void Pick(FPPlayerController Player)
     {
-        if (Player.GetLife() < 1.0f)
+        if (Player.GetLife() < 100.0f)
         {
             Player.AddLife(m_Life);
             gameObject.SetActive(false);

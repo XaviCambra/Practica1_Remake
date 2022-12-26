@@ -8,7 +8,7 @@ public class ShieldItem : Item
 
     public override void Pick(FPPlayerController Player)
     {
-        if (Player.GetShield() < 1.0f)
+        if (Player.GetShield() < 100.0f)
         {
             Player.AddShield(m_Shield);
             gameObject.SetActive(false);
